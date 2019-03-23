@@ -31,9 +31,16 @@ namespace Package
         public MainWindow()
         {
             InitializeComponent();
-            keyname = check();
-            if (keyname != null)
-                changeUninstallUI();
+            try
+            {
+                keyname = check();
+                if (keyname != null)
+                    changeUninstallUI();
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.StackTrace);
+            }
         }
 
         private void unInstall(string keyname)
