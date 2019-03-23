@@ -1,0 +1,184 @@
+﻿<Window x:Class="Package.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Package"
+        mc:Ignorable="d"
+        Title="CheckSystem" Height="450" Width="600" WindowStyle="None" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,1" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" IsHitTestVisible="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle_min" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates"/>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="Grid" Margin="10" Opacity="0.95" MouseMove="Grid_MouseMove" MouseUp="Grid_MouseUp" MouseDown="Grid_MouseDown">
+
+        <Grid.Effect>
+            <DropShadowEffect Direction="0" BlurRadius="10" RenderingBias="Quality" ShadowDepth="0" Opacity="0.36"/>
+        </Grid.Effect>
+
+        <Border BorderBrush="White" Background="White" ClipToBounds="True" BorderThickness="0" CornerRadius="3" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="580">
+        </Border>
+
+        <Grid x:Name="top" Margin="0,0,0,402.734">
+
+            <Grid x:Name="Grid_close" Margin="548.967,8.8,12,0" MouseEnter="Grid_close_MouseEnter" MouseLeave="Grid_close_MouseLeave" MouseLeftButtonDown="Grid_close_MouseLeftButtonDown">
+                <Path x:Name="button_close" Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" Fill="#FF5252" Margin="0.1,0.068,0,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5" >
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="button_x" Opacity="0" Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" Fill="White" Margin="4.5" Stretch="Fill" RenderTransformOrigin="0.5,0.5" />
+            </Grid>
+
+            <Grid x:Name="Grid_min" Margin="520.7,8.8,40.267,0" MouseEnter="Grid_min_MouseEnter" MouseLeave="Grid_min_MouseLeave" MouseLeftButtonDown="Grid_min_MouseLeftButtonDown">
+                <Path x:Name="button_min" Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" Fill="#FFEE58" Margin="0.167,-0.133,-0.201,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="18.599" VerticalAlignment="Bottom" >
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="button__" Opacity="0" Data="M19,13H5V11H19V13Z" Fill="White" Margin="3.4,8.233,3.1,8.499" Stretch="Fill" RenderTransformOrigin="0.5,0.5" >
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Grid>
+            <TextBlock x:Name="title" Foreground="#FF888888" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="17.266" Margin="37.799,10,0,0" Width="69.014"><Run Text="CheckSetup"/><LineBreak/><Run/></TextBlock>
+            <Path x:Name="ICON" Data="M2,16.25C2,16.25 4,3.75 12,3.75C20,3.75 22,16.25 22,16.25C22,16.25 20,20.25 12,20.25C4,20.25 2,16.25 2,16.25M3.35,15.65C3.35,15.65 4.3,19 12,19C17,19 20,17.8 20.65,15.85C21.3,13.9 15.65,7.6 14.65,7.6C13.65,7.6 11.2,12 10.45,12C8.45,12 8.9,10 7.15,10C5.4,10 3.35,15.65 3.35,15.65Z" Fill="#80DEEA" Margin="12.8,10,547.201,0" Stretch="Fill" />
+        </Grid>
+
+        <Button x:Name="button_install" Content="Install" Foreground="#80DEEA" HorizontalAlignment="Left" Margin="164,153,0,0" VerticalAlignment="Top" Width="256.067" Height="68.307" FontSize="24" FontFamily="Lucida Console" Background="Transparent" FontWeight="Bold" MouseEnter="button_install_MouseEnter" MouseLeave="button_install_MouseLeave" Cursor="Hand" Click="button_install_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="install_border" BorderBrush="{TemplateBinding Foreground}" BorderThickness="1" CornerRadius="5" Background="{TemplateBinding Background}">
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Path x:Name="complete" Data="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z" Fill="#FF80DEEA" Margin="215,153,215,131.2" Stretch="Fill" Visibility="Hidden" />
+
+
+        <TextBox x:Name="textPath" VerticalAlignment="Bottom"  Foreground="DarkGray" Padding="5,3,5,1" Margin="93.6,0,109.543,71.467" Text="C:\Program Files (x86)" Height="22.573" Style="{DynamicResource TextBoxStyle}" BorderBrush="#FF66E5E3"/>
+        <Grid x:Name="folder_grid" Margin="479.733,338.893,77.733,0" Height="19.64" VerticalAlignment="Top" MouseEnter="folder_grid_MouseEnter" MouseLeave="folder_grid_MouseLeave" Cursor="Hand" MouseLeftButtonDown="folder_grid_MouseLeftButtonDown">
+            <Path x:Name="folder" Data="M19,20H4C2.89,20 2,19.1 2,18V6C2,4.89 2.89,4 4,4H10L12,6H19A2,2 0 0,1 21,8H21L4,8V18L6.14,10H23.21L20.93,18.5C20.7,19.37 19.92,20 19,20Z" Fill="#FF80DEEA" Stretch="Fill" Cursor="Hand" />
+        </Grid>
+        <ProgressBar x:Name="InstallProgress" Background="Transparent" BorderBrush="#FF80DEEA" HorizontalAlignment="Left" Height="15.64" Margin="93.6,335.96,0,0" VerticalAlignment="Top" Width="408.667" Value="20" SmallChange="1" Foreground="#FF80DEEA" Visibility="Hidden"/>
+    </Grid>
+</Window>

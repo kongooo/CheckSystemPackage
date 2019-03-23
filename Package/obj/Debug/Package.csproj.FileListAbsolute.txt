@@ -1,0 +1,16 @@
+C:\Users\13125\source\repos\Package\Package\bin\Debug\Package.exe.config
+C:\Users\13125\source\repos\Package\Package\bin\Debug\Package.exe
+C:\Users\13125\source\repos\Package\Package\bin\Debug\Package.pdb
+C:\Users\13125\source\repos\Package\Package\obj\Debug\Package.csprojResolveAssemblyReference.cache
+C:\Users\13125\source\repos\Package\Package\obj\Debug\MainWindow.g.cs
+C:\Users\13125\source\repos\Package\Package\obj\Debug\App.g.cs
+C:\Users\13125\source\repos\Package\Package\obj\Debug\Package_MarkupCompile.cache
+C:\Users\13125\source\repos\Package\Package\obj\Debug\Package_MarkupCompile.lref
+C:\Users\13125\source\repos\Package\Package\obj\Debug\MainWindow.baml
+C:\Users\13125\source\repos\Package\Package\obj\Debug\Package.g.resources
+C:\Users\13125\source\repos\Package\Package\obj\Debug\Package.Properties.Resources.resources
+C:\Users\13125\source\repos\Package\Package\obj\Debug\Package.Resource.resources
+C:\Users\13125\source\repos\Package\Package\obj\Debug\Package.csproj.GenerateResource.cache
+C:\Users\13125\source\repos\Package\Package\obj\Debug\Package.csproj.CoreCompileInputs.cache
+C:\Users\13125\source\repos\Package\Package\obj\Debug\Package.exe
+C:\Users\13125\source\repos\Package\Package\obj\Debug\Package.pdb
